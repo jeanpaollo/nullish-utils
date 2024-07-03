@@ -16,7 +16,8 @@ export const areAllNil = <T = any>(...args: T[]) =>
 export const areAllNonNil = <T = any>(...args: T[]) =>
   args?.length ? args?.every?.((e) => isNotNil(e)) : false;
 
-export const coalescing = <T = any>(a: T, b: T) => a ?? b;
+export const coalescing = <T = any>(...args: T[]) =>
+  (args ?? []).find((e) => isNotNil(e)) ?? args[args.length - 1];
 
 export const firstNonNil = <T = any>(...args: T[]) =>
   (args ?? []).find((e) => isNotNil(e));

@@ -8,6 +8,8 @@ import {
   isAnyNonNil,
   isNil,
   isNotNil,
+  isNull,
+  isUndefined,
 } from "./barrel";
 
 const NONNIL_VALUES = [
@@ -25,6 +27,20 @@ const NONNIL_VALUES = [
 ];
 
 const FUNCTION_WITH_SINGLE_PARAMETER_DATA = [
+  {
+    func: isNull,
+    expectList: [
+      { params: [null], return: true },
+      { params: [undefined, ...NONNIL_VALUES], return: false },
+    ],
+  },
+  {
+    func: isUndefined,
+    expectList: [
+      { params: [undefined], return: true },
+      { params: [null, ...NONNIL_VALUES], return: false },
+    ],
+  },
   {
     func: isNil,
     expectList: [
